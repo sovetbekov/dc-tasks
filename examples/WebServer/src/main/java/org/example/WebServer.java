@@ -12,8 +12,9 @@ public class WebServer {
     public static void main(String[] args) {
         // Port number for http request
         int port = args.length > 1 ? Integer.parseInt(args[1]) : 8080;
+
         // The maximum queue length for incoming connection
-        int queueLength = args.length > 2 ? Integer.parseInt(args[2]) : 50;;
+        int queueLength = args.length > 2 ? Integer.parseInt(args[2]) : 50;
 
         try (ServerSocket serverSocket = new ServerSocket(port, queueLength)) {
             System.out.println("Web Server is starting up, listening at port " + port + ".");
