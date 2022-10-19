@@ -97,7 +97,7 @@ public class Processor {
             socket.close();
         }
 
-        if (request.getRequestLine().contains("GET /create/")) {
+        else if (request.getRequestLine().contains("GET /create/")) {
             output.println("HTTP/1.1 200 OK");
             output.println("Content-Type: text/html; charset=utf-8");
             output.println();
@@ -111,7 +111,7 @@ public class Processor {
         }
 
 
-        if (request.getRequestLine().contains("GET /delete/")) {
+        else if (request.getRequestLine().contains("GET /delete/")) {
             output.println("HTTP/1.1 200 OK");
             output.println("Content-Type: text/html; charset=utf-8");
             output.println();
@@ -124,17 +124,20 @@ public class Processor {
             socket.close();
         }
 
-        // We are returning a simple web page now.
-        output.println("HTTP/1.1 200 OK");
-        output.println("Content-Type: text/html; charset=utf-8");
-        output.println();
-        output.println("<html>");
-        output.println("<head><title>Hello</title></head>");
-        output.println("<body><p>Hello, world!</p></body>");
-        output.println("</html>");
-        output.flush();
+        else {
+            // We are returning a simple web page now.
+            output.println("HTTP/1.1 200 OK");
+            output.println("Content-Type: text/html; charset=utf-8");
+            output.println();
+            output.println("<html>");
+            output.println("<head><title>Hello</title></head>");
+            output.println("<body><p>Hello, world!</p></body>");
+            output.println("</html>");
+            output.flush();
 
-        socket.close();
+            socket.close();
+        }
+
     }
 
 
