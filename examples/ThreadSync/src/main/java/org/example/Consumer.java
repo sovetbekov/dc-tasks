@@ -9,6 +9,8 @@ public class Consumer<T> extends Thread {
         this.queue = queue;
     }
 
+
+
     @Override
     public void run() {
         try {
@@ -23,6 +25,7 @@ public class Consumer<T> extends Thread {
 
                 // Process element.
                 System.out.println(id + ": get item: " + elem);
+
             }
         }
         catch (InterruptedException ex) {
