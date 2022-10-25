@@ -19,7 +19,12 @@ public class WebServer {
         // The maximum queue length for incoming connection
         int queueLength = args.length > 2 ? Integer.parseInt(args[2]) : 50;
 
-        int numOfThreads = (args.length > 1 ? Integer.parseInt(args[1]) : 4);
+        int numOfThreads = 6;
+
+        for (int i = 0; i < numOfThreads; i++) {
+            Consumer cons = new Consumer(queue);
+            cons.start();
+        }
 
         try (ServerSocket serverSocket = new ServerSocket(port, queueLength)) {
             System.out.println("Web Server is starting up, listening at port " + port + ".");
@@ -41,12 +46,6 @@ public class WebServer {
 
                     // Process request
                     RequestHandler proc = new RequestHandler(socket, request);
-
-
-                    for (int i = 0; i < numOfThreads; i++) {
-                        Consumer cons = new Consumer(queue, proc);
-                        cons.start();
-                    }
 
                     queue.add(proc);
 

@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Consumer extends Thread {
     private final ThreadSafeQueue queue;
 
-    public Consumer(ThreadSafeQueue queue, RequestHandler elem) {
+    public Consumer(ThreadSafeQueue queue) {
         this.queue = queue;
     }
 
